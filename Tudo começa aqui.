@@ -1,0 +1,44 @@
+<div class="container">
+    <h1>Tudo começa aqui</h1>
+    <div id="countdown"></div>
+</div>body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    margin: 0;
+}
+h1 {
+    font-size: 3em;
+}
+#countdown {
+    font-size: 2em;
+    margin-top: 20px;
+}
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.2);
+}const targetDate = new Date("November 8, 2025 00:00:00").getTime();
+
+const countdown = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML =
+        days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+
+    if (distance < 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML = "Chegou!";
+    }
+}, 1000);
